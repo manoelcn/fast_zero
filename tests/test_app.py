@@ -27,6 +27,19 @@ def test_create_user(client):
     }
 
 
+def test_create_user_should_return_409_username_exists(client, user):
+    response = client.post(
+        '/users/',
+        json={
+            'username': user.username,
+            'email': 'manoel@example.com',
+            'password': 'secret',
+        },
+    )
+    assert response.status_code == HTTPStatus.CONFLICT
+    assert response.json() == {'detail': 'Username already exists'}
+
+
 def test_read_users(client):
     response = client.get('/users')
     assert response.status_code == HTTPStatus.OK
