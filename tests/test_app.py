@@ -32,12 +32,25 @@ def test_create_user_should_return_409_username_exists(client, user):
         '/users/',
         json={
             'username': user.username,
-            'email': 'manoel@example.com',
+            'email': 'teste@example.com',
             'password': 'secret',
         },
     )
     assert response.status_code == HTTPStatus.CONFLICT
     assert response.json() == {'detail': 'Username already exists'}
+
+
+def test_create_user_should_return_409_email_exists(client, user):
+    response = client.post(
+        '/users/',
+        json={
+            'username': 'teste',
+            'email': user.email,
+            'password': 'secret',
+        },
+    )
+    assert response.status_code == HTTPStatus.CONFLICT
+    assert response.json() == {'detail': 'Email already exists'}
 
 
 def test_read_users(client):
