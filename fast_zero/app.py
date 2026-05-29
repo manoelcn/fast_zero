@@ -133,7 +133,7 @@ def update_user(
 
 @app.delete('/users/{user_id}', response_model=Message)
 def delete_user(
-    user_id: int, 
+    user_id: int,
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
 ):

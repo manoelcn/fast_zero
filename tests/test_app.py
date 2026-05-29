@@ -95,19 +95,6 @@ def test_update_user(client, user, token):
     }
 
 
-# def test_update_user_should_return_not_found(client):
-#     response = client.put(
-#         '/users/291',
-#         json={
-#             'username': 'bob',
-#             'email': 'bob@example.com',
-#             'password': 'mynewpassword',
-#         },
-#     )
-#     assert response.status_code == HTTPStatus.NOT_FOUND
-#     assert response.json() == {'detail': 'User not found'}
-
-
 def test_update_integrity_error(client, user, token):
     client.post(
         '/users',
@@ -160,10 +147,3 @@ def test_delete_user(client, user, token):
 
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {'message': 'User deleted'}
-
-
-# def test_delete_user_should_return_not_found(client):
-#     response = client.delete('/users/291')
-
-#     assert response.status_code == HTTPStatus.NOT_FOUND
-#     assert response.json() == {'detail': 'User not found'}
