@@ -62,7 +62,7 @@ def create_user(user: UserSchema, session: Session):
 @router.get('/', response_model=UserList)
 def read_users(session: Session, filter_users: Annotated[FilterPage, Query()]):
     users = session.scalars(
-        select(User).offset(filter_users).limit(filter_users)
+        select(User).offset(filter_users.offset).limit(filter_users.limit)
     ).all()
     return {'users': users}
 
