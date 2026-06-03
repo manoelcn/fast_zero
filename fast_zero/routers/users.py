@@ -60,16 +60,20 @@ async def create_user(user: UserSchema, session: Session):
 
 
 @router.get('/', response_model=UserList)
-def read_users(session: Session, filter_users: Annotated[FilterPage, Query()]):
-    users = session.scalars(
+async def read_users(
+    session: Session, filter_users: Annotated[FilterPage, Query()]
+):
+    query = await session.scalars(
         select(User).offset(filter_users.offset).limit(filter_users.limit)
-    ).all()
+    )
+    users = query.all()
+
     return {'users': users}
 
 
 @router.get('/{user_id}', response_model=UserPublic)
-def read_user(user_id: int, session: Session):
-    db_user = session.scalar(select(User).where(User.id == user_id))
+async def read_user(user_id: int, session: Session):
+    db_user = await session.scalar(select(User).where(User.id == user_id))
 
     if not db_user:
         raise HTTPException(
