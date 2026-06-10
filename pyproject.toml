@@ -53,7 +53,10 @@ addopts = ['-p', 'no:warnings', '--cov=fast_zero', '--cov-context=test', '--cov-
 asyncio_default_fixture_loop_scope = 'function'
 
 [tool.typos.files]
-extend-exclude = ["*.md", "htmlcov/"]
+extend-exclude = ["*.md", "htmlcov/", "migrations/"]
+
+[tool.typos.default]
+extend-ignore-identifiers-re = ["selectin"]
 
 [tool.taskipy.tasks]
 pre_lint = 'typos'
