@@ -200,6 +200,26 @@ async def test_list_todos_should_return_all_expected_fields(
     ]
 
 
+def test_lint_todos_filter_min_length(client, token):
+    tiny_string = 'a'
+    response = client.get(
+        f'/todos/?title={tiny_string}',
+        headers={'Authorization': f'Bearer {token}'},
+    )
+
+    assert response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
+
+
+def test_lint_todos_filter_max_length(client, token):
+    large_string = 'a' * 22
+    response = client.get(
+        f'/todos/?title={large_string}',
+        headers={'Authorization': f'Bearer {token}'},
+    )
+
+    assert response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
+
+
 def test_patch_todo_error(client, token):
     response = client.patch(
         '/todos/10',
