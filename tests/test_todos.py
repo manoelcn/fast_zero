@@ -2,8 +2,9 @@ from http import HTTPStatus
 
 import factory.fuzzy
 import pytest
+from sqlalchemy import select
 
-from fast_zero.models import Todo, TodoState
+from fast_zero.models import Todo, TodoState, User
 
 
 class TodoFactory(factory.Factory):
@@ -36,6 +37,22 @@ def test_create_todo(client, token, mock_db_time):
         'created_at': time.isoformat(),
         'updated_at': time.isoformat(),
     }
+
+
+@pytest.mark.asyncio
+async def test_create_todo_error(session, user: User):
+    todo = Todo(
+        title='Test Todo',
+        description='Test Desc',
+        state='teste',
+        user_id=user.id,
+    )
+
+    session.add(todo)
+    await session.commit()
+
+    with pytest.raises(LookupError):
+        await session.scalar(select(Todo))
 
 
 @pytest.mark.asyncio
