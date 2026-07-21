@@ -4,6 +4,9 @@ O **Fast Zero** é um backend moderno de alta performance que serve como API RES
 
 A aplicação gerencia usuários e tarefas com isolamento completo, fornecendo autenticação baseada em JWT e persistência de dados relacional.
 
+> [!NOTE]
+> Este projeto é parte de um curso prático de desenvolvimento web e boas práticas com Python, que pode ser encontrado em: [FastAPI do Zero](https://fastapidozero.dunossauro.com/estavel/).
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
