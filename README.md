@@ -8,10 +8,10 @@ A aplicação gerencia usuários e tarefas com isolamento completo, fornecendo a
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Core & Framework:** [Python 3.14+](https://www.python.org/) e [FastAPI](https://fastapi.tiangolo.com/) (executado sob servidor ASGI [Uvicorn](https://www.uvicorn.org/)).
+- **Core & Framework:** [Python 3.14+](https://www.python.org/) e [FastAPI](https://fastapi.tiangolo.com/) (executado sob servidor ASGI [Uvicorn](https://uvicorn.dev/)).
 - **ORM & Banco de Dados:** [SQLAlchemy 2.0](https://www.sqlalchemy.org/) (Async engine), utilizando [Alembic](https://alembic.sqlalchemy.org/) para o gerenciamento de migrações estruturais do banco.
-- **Drivers de Conexão:** [aiosqlite](https://github.com/nolar/aiosqlite) (para SQLite assíncrono em desenvolvimento) e [psycopg 3](https://www.psycopg.org/psycopg3/) (para integração assíncrona ao PostgreSQL).
-- **Segurança & Autenticação:** [PyJWT](https://pyjwt.readthedocs.io/) para criação de tokens JWT assinados, e [pwdlib](https://pwdlib.readthedocs.io/) (com algoritmo criptográfico **Argon2**) para hashing seguro de senhas.
+- **Drivers de Conexão:** [aiosqlite](https://aiosqlite.omnilib.dev/en/stable/) (para SQLite assíncrono em desenvolvimento) e [psycopg 3](https://www.psycopg.org/psycopg3/) (para integração assíncrona ao PostgreSQL).
+- **Segurança & Autenticação:** [PyJWT](https://pyjwt.readthedocs.io/) para criação de tokens JWT assinados, e [pwdlib](https://frankie567.github.io/pwdlib/) (com algoritmo criptográfico **Argon2**) para hashing seguro de senhas.
 - **Validação de Dados:** [Pydantic v2](https://docs.pydantic.dev/) (para validação de payloads de request/response) e [Pydantic Settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) (para carregamento tipado de variáveis de ambiente).
 - **Gerenciamento de Dependências:** [Poetry](https://python-poetry.org/).
 - **Garantia de Qualidade & CI:**
